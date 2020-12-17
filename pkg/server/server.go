@@ -9,12 +9,13 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
-	"k8s.io/client-go/rest"
 	"net/http"
 	"net/url"
 	"os"
 	"path"
 	"strings"
+
+	"k8s.io/client-go/rest"
 
 	"k8s.io/klog"
 
@@ -94,6 +95,7 @@ type jsGlobals struct {
 	GOOS                     string `json:"GOOS"`
 	GraphQLBaseURL           string `json:"graphqlBaseURL"`
 	DevCatalogCategories     string `json:"developerCatalogCategories"`
+	UserSettings             string `json:"userSettings"`
 }
 
 type Server struct {
@@ -137,6 +139,7 @@ type Server struct {
 	PrometheusPublicURL   *url.URL
 	ThanosPublicURL       *url.URL
 	DevCatalogCategories  string
+	UserSettings          string
 }
 
 func (s *Server) authDisabled() bool {
@@ -503,6 +506,7 @@ func (s *Server) indexHandler(w http.ResponseWriter, r *http.Request) {
 		LoadTestFactor:        s.LoadTestFactor,
 		GraphQLBaseURL:        proxy.SingleJoiningSlash(s.BaseURL.Path, graphQLEndpoint),
 		DevCatalogCategories:  s.DevCatalogCategories,
+		UserSettings:          s.UserSettings,
 	}
 
 	if !s.authDisabled() {
