@@ -120,7 +120,7 @@ i18n
     },
     saveMissing: true,
     missingKeyHandler: function(lng, ns, key) {
-      window.windowError = `Missing i18n key "${key}" in namespace "${ns}" and language "${lng}."`;
+      window.windowError = `Missing i18n key "${key}" in namespace "${ns}" and language "${lng}".`;
       // eslint-disable-next-line no-console
       console.error(window.windowError);
     },
