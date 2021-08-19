@@ -43,6 +43,7 @@ export const useValuesForNamespaceContext = () => {
 
   React.useEffect(() => {
     if (urlNamespace) {
+      dispatch(setActiveNamespaceForStore(urlNamespace));
       return;
     }
     if (resourcesLoaded) {
@@ -62,12 +63,6 @@ export const useValuesForNamespaceContext = () => {
     // Only run this hook after all resources have loaded.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resourcesLoaded, useProjects]);
-
-  React.useEffect(() => {
-    if (urlNamespace) {
-      dispatch(setActiveNamespaceForStore(urlNamespace));
-    }
-  }, [dispatch, urlNamespace]);
 
   const loaded: boolean = !!urlNamespace || (resourcesLoaded && !!fallbackNamespace);
 

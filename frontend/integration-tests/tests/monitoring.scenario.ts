@@ -16,17 +16,53 @@ describe('Alertmanager: YAML', () => {
   });
 
   it('displays the Alertmanager YAML page', async () => {
+    console.warn('x 1');
+    checkLogs();
+    checkErrors();
     await sidenavView.clickNavLink(['Administration', 'Cluster Settings']);
+    console.warn('x 2');
+    checkLogs();
+    checkErrors();
     await crudView.isLoaded();
+    console.warn('x 3');
+    checkLogs();
+    checkErrors();
     await horizontalnavView.clickHorizontalTab('Configuration');
+    console.warn('x 4');
+    checkLogs();
+    checkErrors();
     await crudView.isLoaded();
+    console.warn('x 5');
+    checkLogs();
+    checkErrors();
     await monitoringView.wait(until.elementToBeClickable(firstElementByTestID('Alertmanager')));
+    console.warn('x 6');
+    checkLogs();
+    checkErrors();
     expect(firstElementByTestID('Alertmanager').getText()).toContain('Alertmanager');
+    console.warn('x 7');
+    checkLogs();
+    checkErrors();
     await firstElementByTestID('Alertmanager').click();
+    console.warn('x 8');
+    checkLogs();
+    checkErrors();
     await crudView.isLoaded();
+    console.warn('x 9');
+    checkLogs();
+    checkErrors();
     await horizontalnavView.clickHorizontalTab('YAML');
+    console.warn('x 10');
+    checkLogs();
+    checkErrors();
     await yamlView.isLoaded();
+    console.warn('x 11');
+    checkLogs();
+    checkErrors();
     expect(yamlView.yamlEditor.isPresent()).toBe(true);
+    console.warn('x 12');
+    checkLogs();
+    checkErrors();
   });
 
   it('saves Alertmanager YAML', async () => {

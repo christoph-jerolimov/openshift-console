@@ -34,6 +34,8 @@ const htmlReporter = new HtmlScreenshotReporter({
   inlineImages: true,
   captureOnlyFailedSpecs: true,
   filename: 'protractor-report.html',
+  showQuickLinks: true,
+  reportFailedUrl: true,
 });
 const junitReporter = new JUnitXmlReporter({
   savePath: `./${screenshotsDir}`,
