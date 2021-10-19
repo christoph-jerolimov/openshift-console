@@ -143,6 +143,7 @@ const ConnectedTopologyListView: React.FC<TopologyListViewProps &
     updateMetrics,
     updateMonitoringAlerts,
   }) => {
+    console.log('loadtest ConnectedTopologyListView render');
     const queryParams = useQueryParams();
     const selectedId = queryParams.get('selectId');
     const [visualizationReady, setVisualizationReady] = React.useState<boolean>(false);

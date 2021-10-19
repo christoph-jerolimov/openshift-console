@@ -15,6 +15,7 @@ interface TopologyDataRendererProps {
 
 const TopologyDataRenderer: React.FC<TopologyDataRendererProps> = observer(
   ({ viewType, title }) => {
+    console.log('loadtest TopologyDataRenderer render');
     const { t } = useTranslation();
     const { namespace, model, loaded, loadError } = React.useContext<ExtensibleModel>(ModelContext);
     const EmptyMsg = React.useCallback(

@@ -38,6 +38,7 @@ const TopologyPage: React.FC<TopologyPageProps> = ({
   hideProjects = false,
   defaultViewType = TopologyViewType.graph,
 }) => {
+  console.log('loadtest topology TopologyPage render');
   const { t } = useTranslation();
   const [
     topologyViewState,

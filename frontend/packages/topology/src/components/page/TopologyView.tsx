@@ -67,6 +67,7 @@ export const ConnectedTopologyView: React.FC<ComponentProps> = ({
   onSupportedFiltersChange,
   onSupportedKindsChange,
 }) => {
+  console.log('loadtest ConnectedTopologyView render');
   const [viewContainer, setViewContainer] = React.useState<HTMLElement>(null);
   const { setTopologyFilters: onFiltersChange } = React.useContext(FilterContext);
   const [filteredModel, setFilteredModel] = React.useState<Model>();
