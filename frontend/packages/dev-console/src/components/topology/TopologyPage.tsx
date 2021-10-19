@@ -84,6 +84,7 @@ export function renderTopology({
 }
 
 export const TopologyPageContext: React.FC<TopologyPageProps> = observer(({ match }) => {
+  console.log('loadtest TopologyPageContext render');
   const queryParams = useQueryParams();
   const namespace = match.params.name;
   const dataModelContext = React.useContext<ExtensibleModel>(ModelContext);
@@ -181,6 +182,7 @@ export const TopologyPageContext: React.FC<TopologyPageProps> = observer(({ matc
 });
 
 export const TopologyPage: React.FC<TopologyPageProps> = ({ match }) => {
+  console.log('loadtest TopologyPage render');
   const namespace = match.params.name;
   return (
     <DataModelProvider namespace={namespace}>

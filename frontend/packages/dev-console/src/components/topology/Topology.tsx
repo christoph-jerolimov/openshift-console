@@ -51,6 +51,7 @@ interface TopologyProps {
 }
 
 const Topology: React.FC<TopologyProps> = ({ model, application, onSelect, setVisualization }) => {
+  console.log('loadtest Topology render');
   const applicationRef = React.useRef<string>(null);
   const [visualizationReady, setVisualizationReady] = React.useState<boolean>(false);
   const [dragHint, setDragHint] = React.useState<string>('');

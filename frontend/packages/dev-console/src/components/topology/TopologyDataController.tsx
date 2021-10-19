@@ -15,6 +15,7 @@ export const TopologyDataController: React.FC<TopologyDataControllerProps> = ({
   namespace,
   render,
 }) => {
+  console.log('loadtest TopologyDataController render');
   const modelFactories = useExtensions<TopologyDataModelFactory>(isTopologyDataModelFactory);
   return (
     <>

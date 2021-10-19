@@ -68,6 +68,7 @@ export const TopologyView: React.FC<ComponentProps> = ({
   onSupportedFiltersChange,
   onSupportedKindsChange,
 }) => {
+  console.log('loadtest TopologyView render');
   const [filteredModel, setFilteredModel] = React.useState<Model>();
   const [selectedEntity, setSelectedEntity] = React.useState<GraphElement>(null);
   const [visualization, setVisualization] = React.useState<Visualization>();
