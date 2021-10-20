@@ -41,6 +41,7 @@ type PageContentsProps = {
 };
 
 const PageContents: React.FC<PageContentsProps> = ({ match, viewType }) => {
+  console.log('loadtest PageContents render');
   const { t } = useTranslation();
   const namespace = match.params.name;
 
@@ -69,6 +70,7 @@ export const TopologyPage: React.FC<TopologyPageProps> = ({
   hideProjects = false,
   defaultViewType = TopologyViewType.graph,
 }) => {
+  console.log('loadtest topology TopologyPage render');
   const { t } = useTranslation();
   const [preferredTopologyView, preferredTopologyViewLoaded] = usePreferredTopologyView();
   const [

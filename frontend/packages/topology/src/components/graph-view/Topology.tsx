@@ -73,6 +73,7 @@ interface TopologyGraphViewProps {
 
 const TopologyGraphView: React.FC<TopologyGraphViewProps> = React.memo(
   ({ visualizationReady, visualization, controlsDisabled, selectedId, dragHint }) => {
+    console.log('loadtest TopologyGraphView render');
     if (!visualizationReady) {
       return null;
     }
@@ -132,6 +133,7 @@ const Topology: React.FC<TopologyProps &
   userSettingState: topologyLayoutData,
   setUserSettingState: setTopologyLayoutData,
 }) => {
+  console.log('loadtest Topology render');
   const topologyLayoutDataJson = topologyLayoutData || {};
   const applicationRef = React.useRef<string>(null);
   const [visualizationReady, setVisualizationReady] = React.useState<boolean>(false);
