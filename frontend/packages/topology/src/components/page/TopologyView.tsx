@@ -89,6 +89,7 @@ export const ConnectedTopologyView: React.FC<ComponentProps> = ({
   isOver,
   canDrop,
 }) => {
+  console.log('loadtest ConnectedTopologyView render');
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const [viewContainer, setViewContainer] = React.useState<HTMLElement>(null);

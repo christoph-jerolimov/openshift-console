@@ -129,6 +129,7 @@ const Topology: React.FC<TopologyProps &
   userSettingState: topologyLayoutData,
   setUserSettingState: setTopologyLayoutData,
 }) => {
+  console.log('loadtest Topology render');
   const topologyLayoutDataJson = topologyLayoutData || {};
   const applicationRef = React.useRef<string>(null);
   const [visualizationReady, setVisualizationReady] = React.useState<boolean>(false);
