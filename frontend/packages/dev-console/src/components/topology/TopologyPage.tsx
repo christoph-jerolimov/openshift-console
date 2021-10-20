@@ -9,6 +9,7 @@ export interface TopologyPageProps {
 }
 
 const TopologyPage: React.FC<TopologyPageProps> = ({ match }) => {
+  console.log('loadtest dev-console TopologyPage render');
   return <Topology match={match} />;
 };
 
