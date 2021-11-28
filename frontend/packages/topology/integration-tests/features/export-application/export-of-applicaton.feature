@@ -17,6 +17,7 @@ Feature: Export of application
              When user navigates to Topology page
               And user clicks on Export Application button
              Then user can see a toast message saying "Export of resources in aut-export-application has started."
+              And user can see a toast message saying "All the resources are exported successfully from aut-export-application. Click below to download it." and close it
               And user can see primer job created in topology
 
 
@@ -26,6 +27,7 @@ Feature: Export of application
              When user clicks on Export Application button
               And user clicks on Export Application button again
              Then user can see "View logs" link, "Cancel Export", "Restart Export", and "Ok" button
+              And user can see a toast message saying "All the resources are exported successfully from aut-export-application. Click below to download it." and close it
 
 
         @regression @manual @odc-6296
@@ -44,6 +46,7 @@ Feature: Export of application
              When user clicks on Export Application button again
               And user clicks on Restart button
              Then user can see a toast message saying "Export of resources in aut-export-application has started."
+              And user can see a toast message saying "All the resources are exported successfully from aut-export-application. Click below to download it." and close it
 
 
         @regression
