@@ -21,6 +21,6 @@ func Setup(files []string) {
 		}
 	}
 
-	// Initialize test-env
+	StartTestEnvironment()
 	// Set bridge configuration flags so that the bridge automatically use the test-env
 }
