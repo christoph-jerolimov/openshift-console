@@ -244,7 +244,7 @@ func main() {
 
 	testEnvFiles := strings.Split(*testEnvConfig, ",")
 	if len(testEnvFiles) > 0 {
-		testenv.Setup(testEnvFiles)
+		testenv.Setup(testEnvFiles, fs)
 	}
 
 	srv := &server.Server{

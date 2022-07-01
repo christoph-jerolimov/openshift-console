@@ -4,13 +4,13 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"flag"
 	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 	"os"
 	"os/signal"
-	"path/filepath"
 
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"
@@ -42,10 +42,7 @@ func (m *Mangler) modifier(request *http.Request) {
 	fmt.Printf("\n\n%v\n\n", request)
 }
 
-func StartTestEnvironment() {
-	crdFiles := []string{
-		filepath.Join("pkg/testenv/static/project.yaml"), // added to the project manually
-	}
+func StartTestEnvironment(crdFiles []string, flags *flag.FlagSet) {
 
 	fmt.Printf("CRD files (CRDDirectoryPaths): %v\n", crdFiles)
 
@@ -96,9 +93,16 @@ func StartTestEnvironment() {
 
 	fmt.Print("test-env started!\n\n")
 	fmt.Printf("  API server:\n\n    %v\n\n", testEnvironment.Config.Host)
-	fmt.Printf("  Proxied API server (no authentification is needed):\n\n    %v\n\n", "http://localhost:8090/")
+	fmt.Printf("  Proxied API server (no authentification is needed):\n\n    %v\n\n", proxyServer.Addr)
 	// fmt.Printf("Bearer token.. %v\n", testEnvironment.Config.BearerToken)
 	// fmt.Printf("Config..       %v\n", testEnvironment.Config)
+
+	flag.Set("listen", "http://localhost:9091")
+	flag.Set("user-auth", "disabled")
+	flag.Set("k8s-mode", "off-cluster")
+	flag.Set("k8s-mode-off-cluster-endpoint", "http://127.0.0.1:8090/")
+	flag.Set("k8s-auth", "bearer-token")
+	flag.Set("k8s-auth-bearer-token", "ignored-by-proxy")
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
