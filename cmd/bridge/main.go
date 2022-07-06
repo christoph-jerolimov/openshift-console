@@ -22,6 +22,7 @@ import (
 	"github.com/openshift/console/pkg/server"
 	"github.com/openshift/console/pkg/serverconfig"
 	"github.com/openshift/console/pkg/serverutils"
+	"github.com/openshift/console/pkg/testenv"
 	oscrypto "github.com/openshift/library-go/pkg/crypto"
 
 	"k8s.io/klog"
@@ -127,6 +128,8 @@ func main() {
 
 	telemetryFlags := serverconfig.MultiKeyValue{}
 	fs.Var(&telemetryFlags, "telemetry", "Telemetry configuration that can be used by console plugins. Each entry should be a key=value pair.")
+
+	testEnvConfig := fs.String("test-env", "", "Test environment configuration contains a list of files and folders that get get loaded automatically.")
 
 	fLoadTestFactor := fs.Int("load-test-factor", 0, "DEV ONLY. The factor used to multiply k8s API list responses for load testing purposes.")
 
@@ -238,6 +241,11 @@ func main() {
 				bridge.FlagFatalf("i18n-namespaces", "list must contain name of i18n namespaces separated by comma")
 			}
 		}
+	}
+
+	testEnvFiles := strings.Split(*testEnvConfig, ",")
+	if len(testEnvFiles) > 0 {
+		testenv.Setup(testEnvFiles, fs)
 	}
 
 	srv := &server.Server{
