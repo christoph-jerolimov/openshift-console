@@ -22,6 +22,66 @@
       "usePerspectiveDetection": { "$codeRef": "perspective.usePerspectiveDetection" }
     }
   },
+
+  {
+    "type": "console.cluster-configuration/item",
+    "properties": {
+      "id": "dev-console.project-access.ProjectAccessRolesConfiguration",
+      "groupId": "projects",
+      "label": "%devconsole~Project access Cluster Roles%",
+      "description": "%devconsole~TODO%",
+      "field": {
+        "type": "custom",
+        "component": { "$codeRef": "projectAccess.ProjectAccessRolesConfiguration" }
+      },
+      "readAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "get",
+          "name": "cluster"
+        }
+      ],
+      "writeAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "patch",
+          "name": "cluster"
+        }
+      ]
+    }
+  },
+  {
+    "type": "console.cluster-configuration/item",
+    "properties": {
+      "id": "dev-console.AddPageConfiguration",
+      "groupId": "developer",
+      "label": "%devconsole~Add page actions%",
+      "description": "%devconsole~TODO%",
+      "field": {
+        "type": "custom",
+        "component": { "$codeRef": "add.AddPageConfiguration" }
+      },
+      "readAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "get",
+          "name": "cluster"
+        }
+      ],
+      "writeAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "patch",
+          "name": "cluster"
+        }
+      ]
+    }
+  },
+
   {
     "type": "dev-console.add/action-group",
     "properties": {

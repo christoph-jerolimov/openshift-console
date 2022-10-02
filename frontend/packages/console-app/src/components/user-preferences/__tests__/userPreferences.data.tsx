@@ -56,6 +56,7 @@ export const userPreferenceItemWithCheckboxField: ResolvedUserPreferenceItem = {
 
 export const userPreferenceItemWithUnknownField: ResolvedUserPreferenceItem = {
   id: 'console.unknown',
+  groupId: 'unknown',
   label: 'Unknown Input',
   field: {
     type: 'text' as any,
