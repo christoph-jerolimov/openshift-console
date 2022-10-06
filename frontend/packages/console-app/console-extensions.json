@@ -263,7 +263,36 @@
       "readAccessReview": [
         {
           "group": "operator.openshift.io/v1",
-          "resource": "consolesXXX",
+          "resource": "consoles",
+          "verb": "get",
+          "name": "cluster"
+        }
+      ],
+      "writeAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "patch",
+          "name": "cluster"
+        }
+      ]
+    }
+  },
+  {
+    "type": "console.cluster-configuration/item",
+    "properties": {
+      "id": "console-app.customization.perspectives",
+      "groupId": "general",
+      "label": "%console-app~Perspectives%",
+      "description": "%console-app~Show or hide perspectives by enabling, disabling or adding access review check(s).%",
+      "field": {
+        "type": "custom",
+        "component": { "$codeRef": "perspective.perspectiveConfiguration" }
+      },
+      "readAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
           "verb": "get",
           "name": "cluster"
         }

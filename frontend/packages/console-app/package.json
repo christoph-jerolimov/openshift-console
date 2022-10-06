@@ -42,7 +42,7 @@
       "actions": "src/actions",
       "clusterConfiguration": "src/components/cluster-configuration",
       "userPreferences": "src/components/user-preferences",
-      "perspective": "src/utils/perspective",
+      "perspective": "src",
       "dynamicPluginsHealthResource": "src/components/dashboards-page/dynamic-plugins-health-resource",
       "storageProvisioners": "src/components/storage/StorageClassProviders",
       "storageProvisionerDocs": "src/components/storage/Documentation"

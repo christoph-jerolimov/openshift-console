@@ -12,11 +12,9 @@ import { ClusterRoleModel } from '@console/internal/models';
 const ProjectAccessRolesConfiguration: React.FC = () => {
   const { t } = useTranslation();
 
-  const [
-    allClusterRoles,
-    allClusterRolesLoaded,
-    /* allClusterRolesError */
-  ] = useK8sWatchResource<K8sResourceCommon[]>({
+  const [allClusterRoles, allClusterRolesLoaded /* allClusterRolesError */] = useK8sWatchResource<
+    K8sResourceCommon[]
+  >({
     groupVersionKind: getGroupVersionKindForModel(ClusterRoleModel),
     isList: true,
   });
@@ -36,7 +34,6 @@ const ProjectAccessRolesConfiguration: React.FC = () => {
               <ResourceIcon groupVersionKind={getGroupVersionKindForModel(ClusterRoleModel)} />
               <div>
                 <div>{displayName || clusterRole.metadata.name}</div>
-                {displayName ? <div>{clusterRole.metadata.name}</div> : null}
               </div>
             </div>
           );
@@ -49,8 +46,8 @@ const ProjectAccessRolesConfiguration: React.FC = () => {
     newAvailableOptions: React.ReactNode[],
     newChosenOptions: React.ReactNode[],
   ) => {
-    setAvailableOptions(newAvailableOptions.sort());
-    setChosenOptions(newChosenOptions.sort());
+    setAvailableOptions(newAvailableOptions);
+    setChosenOptions(newChosenOptions);
   };
 
   return (

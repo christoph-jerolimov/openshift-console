@@ -81,7 +81,35 @@
       ]
     }
   },
-
+  {
+    "type": "console.cluster-configuration/item",
+    "properties": {
+      "id": "dev-console.DeveloperCatalogTypesConfiguration",
+      "groupId": "developer",
+      "label": "%devconsole~Developer Catalog Types%",
+      "description": "%devconsole~Enable or Disable Catalog types%",
+      "field": {
+        "type": "custom",
+        "component": { "$codeRef": "catalog.catalogTypesConfiguration" }
+      },
+      "readAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "get",
+          "name": "cluster"
+        }
+      ],
+      "writeAccessReview": [
+        {
+          "group": "operator.openshift.io/v1",
+          "resource": "consoles",
+          "verb": "patch",
+          "name": "cluster"
+        }
+      ]
+    }
+  },
   {
     "type": "dev-console.add/action-group",
     "properties": {
