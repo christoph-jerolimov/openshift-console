@@ -155,42 +155,36 @@ export const isCatalogTypeEnabled = (catalogType: string): boolean => {
   return true;
 };
 
-export const useGetAllDisabledSubCatalogs = () => {
-  const [catalogExtensionsArray] = useResolvedExtensions<CatalogItemType>(isCatalogItemType);
-  const catalogTypeExtensions = catalogExtensionsArray.map((type) => {
-    return type.properties.type;
-  });
-  let disabledSubCatalogs = [];
+export const useGetAllDisabledCatalogTypes = (): string[] => {
+  const [catalogExtensions] = useResolvedExtensions<CatalogItemType>(isCatalogItemType);
   if (window.SERVER_FLAGS.developerCatalogTypes) {
     const developerCatalogTypes = JSON.parse(window.SERVER_FLAGS.developerCatalogTypes);
+    const catalogTypes = catalogExtensions.map((type) => type.properties.type);
     if (
       developerCatalogTypes?.state === CatalogVisibilityState.Enabled &&
       developerCatalogTypes?.enabled?.length > 0
     ) {
-      disabledSubCatalogs = catalogTypeExtensions.filter(
-        (val) => !developerCatalogTypes?.enabled.includes(val),
-      );
-      return [disabledSubCatalogs];
+      return catalogTypes.filter((type) => !developerCatalogTypes?.enabled.includes(type));
     }
     if (developerCatalogTypes?.state === CatalogVisibilityState.Disabled) {
       if (developerCatalogTypes?.disabled?.length > 0) {
-        return [developerCatalogTypes?.disabled, catalogTypeExtensions];
+        return developerCatalogTypes?.disabled;
       }
-      return [catalogTypeExtensions];
+      return catalogTypes;
     }
   }
-  return [disabledSubCatalogs];
+  return [];
 };
 
 export const useIsDeveloperCatalogEnabled = (): boolean => {
-  const [disabledSubCatalogs] = useGetAllDisabledSubCatalogs();
+  const disabledCatalogsTypes = useGetAllDisabledCatalogTypes();
   const [catalogExtensionsArray] = useResolvedExtensions<CatalogItemType>(isCatalogItemType);
   const catalogTypeExtensions = catalogExtensionsArray.map((type) => {
     return type.properties.type;
   });
-  if (disabledSubCatalogs?.length === catalogTypeExtensions?.length) {
+  if (disabledCatalogsTypes?.length === catalogTypeExtensions?.length) {
     return (
-      JSON.stringify(disabledSubCatalogs.sort()) !== JSON.stringify(catalogTypeExtensions.sort())
+      JSON.stringify(disabledCatalogsTypes.sort()) !== JSON.stringify(catalogTypeExtensions.sort())
     );
   }
   return true;

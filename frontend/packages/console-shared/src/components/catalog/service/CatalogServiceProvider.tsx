@@ -11,7 +11,7 @@ import { CatalogService } from '../utils';
 import {
   keywordCompare,
   applyCatalogItemMetadata,
-  useGetAllDisabledSubCatalogs,
+  useGetAllDisabledCatalogTypes,
 } from '../utils/catalog-utils';
 import CatalogExtensionHookResolver from './CatalogExtensionHookResolver';
 
@@ -51,7 +51,7 @@ const CatalogServiceProvider: React.FC<CatalogServiceProviderProps> = ({
     catalogBadgeProviderExtensions,
     extensionsResolved,
   ] = useCatalogExtensions(catalogId, catalogType);
-  const [disabledSubCatalogs] = useGetAllDisabledSubCatalogs();
+  const disabledCatalogsTypes = useGetAllDisabledCatalogTypes();
   const [extItemsMap, setExtItemsMap] = React.useState<{ [uid: string]: CatalogItem[] }>({});
   const [extItemsErrorMap, setItemsErrorMap] = React.useState<{ [uid: string]: Error }>({});
   const [metadataProviderMap, setMetadataProviderMap] = React.useState<{
@@ -68,7 +68,7 @@ const CatalogServiceProvider: React.FC<CatalogServiceProviderProps> = ({
         : catalogProviderExtensions.every(({ uid }) => extItemsMap[uid] || extItemsErrorMap[uid])));
 
   const enabledCatalogProviderExtensions = catalogProviderExtensions.filter((item) => {
-    return !disabledSubCatalogs?.includes(item?.properties?.type);
+    return !disabledCatalogsTypes?.includes(item?.properties?.type);
   });
   const preCatalogItems = React.useMemo(() => {
     if (!loaded) {
